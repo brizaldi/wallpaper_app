@@ -17,7 +17,7 @@ class PhotosWatcherState with _$PhotosWatcherState {
         hasReachedMax: false,
         page: 1,
         limit: 20,
-        keyword: 'curated',
+        keyword: 'random',
         listPhoto: [],
         failureOrSuccessOption: none(),
       );

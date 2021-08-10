@@ -32,7 +32,7 @@ class PhotoRemoteDataSource implements IPhotoRemoteDataSource {
         queryParameters: {
           'page': page,
           'per_page': limit,
-          'query': keyword ?? 'curated',
+          'query': keyword ?? 'random',
         },
       );
 

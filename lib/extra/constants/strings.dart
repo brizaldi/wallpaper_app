@@ -4,4 +4,5 @@ class Strings {
 
   static const String serverErrorMessage = 'Server error occured';
   static const String noConnectionErrorMessage = 'No internet connection';
+  static const String emptyResultErrorMessage = 'Oops, no images found';
 }

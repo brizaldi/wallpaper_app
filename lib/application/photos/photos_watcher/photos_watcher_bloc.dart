@@ -54,18 +54,27 @@ class PhotosWatcherBloc extends Bloc<PhotosWatcherEvent, PhotosWatcherState> {
   ) async* {
     yield* event.map(
       fetched: (e) async* {
+        yield state.copyWith(
+          status: const FetchStatus.inProgress(),
+        );
         yield await _mapFetchedToState();
       },
       refreshed: (e) async* {
         final _lastKeyword = state.keyword;
-        yield PhotosWatcherState.initial().copyWith(
+        yield state.copyWith(
+          hasReachedMax: false,
+          page: 1,
           keyword: _lastKeyword,
+          failureOrSuccessOption: none(),
         );
         add(const PhotosWatcherEvent.fetched());
       },
       keywordChanged: (e) async* {
-        yield PhotosWatcherState.initial().copyWith(
+        yield state.copyWith(
+          hasReachedMax: false,
+          page: 1,
           keyword: e.keyword,
+          failureOrSuccessOption: none(),
         );
         add(const PhotosWatcherEvent.fetched());
       },
@@ -102,6 +111,7 @@ class PhotosWatcherBloc extends Bloc<PhotosWatcherEvent, PhotosWatcherState> {
       (listPhoto) {
         if (listPhoto.isEmpty) {
           return state.copyWith(
+            status: const FetchStatus.success(),
             hasReachedMax: true,
             failureOrSuccessOption: none(),
           );
