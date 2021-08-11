@@ -84,7 +84,7 @@ class PhotosWatcherBloc extends Bloc<PhotosWatcherEvent, PhotosWatcherState> {
   Future<PhotosWatcherState> _mapFetchedToState() async {
     if (state.hasReachedMax) return state;
 
-    if (state.status == const FetchStatus.initial()) {
+    if (state.page == 1) {
       final either = await _getPhotos();
 
       return either.fold(
@@ -119,7 +119,8 @@ class PhotosWatcherBloc extends Bloc<PhotosWatcherEvent, PhotosWatcherState> {
           return state.copyWith(
             status: const FetchStatus.success(),
             page: state.page + 1,
-            listPhoto: List.of(state.listPhoto)..addAll(listPhoto),
+            listPhoto: state.page == 1 ? listPhoto : List.of(state.listPhoto)
+              ..addAll(listPhoto),
             failureOrSuccessOption: none(),
           );
         }

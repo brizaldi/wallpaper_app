@@ -7,6 +7,7 @@ import '../../../application/photos/photos_watcher/photos_watcher_bloc.dart';
 import '../../../domain/layouts/layout_type.dart';
 import '../../../extra/constants/strings.dart';
 import '../../../extra/style/style.dart';
+import 'custom_search_delegate.dart';
 import 'home_body.dart';
 
 class HomeScaffold extends StatelessWidget {
@@ -44,7 +45,7 @@ class HomeScaffold extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () => _onTapSearch(context),
         tooltip: 'Search',
         child: const Icon(
           Icons.search,
@@ -68,5 +69,18 @@ class HomeScaffold extends StatelessWidget {
         },
       ),
     );
+  }
+
+  Future<void> _onTapSearch(BuildContext context) async {
+    final _result = await showSearch(
+      context: context,
+      delegate: CustomSearchDelegate(),
+    );
+
+    if (_result != null) {
+      context
+          .read<PhotosWatcherBloc>()
+          .add(PhotosWatcherEvent.keywordChanged(keyword: _result));
+    }
   }
 }
