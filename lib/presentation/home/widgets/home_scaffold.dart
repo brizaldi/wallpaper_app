@@ -4,6 +4,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
 import '../../../application/layouts/view_cubit.dart';
 import '../../../application/photos/photos_watcher/photos_watcher_bloc.dart';
+import '../../../application/themes/theme_cubit.dart';
 import '../../../domain/layouts/layout_type.dart';
 import '../../../extra/constants/strings.dart';
 import '../../../extra/style/style.dart';
@@ -15,9 +16,15 @@ class HomeScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final _textTheme = Theme.of(context).textTheme;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text(Strings.appName),
+        elevation: 0,
+        title: Text(
+          Strings.appName,
+          style: _textTheme.headline6,
+        ),
         actions: [
           IconButton(
             onPressed: () => context.read<LayoutCubit>().layoutToggled(),
@@ -36,10 +43,12 @@ class HomeScaffold extends StatelessWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () => context.read<ThemeCubit>().toggleTheme(),
             tooltip: 'Theme',
-            icon: const Icon(
-              Icons.dark_mode,
+            icon: Icon(
+              Theme.of(context).brightness == Brightness.dark
+                  ? Icons.dark_mode
+                  : Icons.light_mode,
             ),
           ),
         ],

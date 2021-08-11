@@ -17,8 +17,8 @@ class PhotoDescription extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: Theme.of(context).brightness == Brightness.dark
-            ? Palette.mineshaft.withOpacity(.5)
-            : Palette.aquaHaze.withOpacity(.5),
+            ? Palette.mineshaft.withOpacity(.7)
+            : Palette.aquaHaze.withOpacity(.7),
         borderRadius: const BorderRadius.vertical(
           top: Radius.circular(16),
         ),

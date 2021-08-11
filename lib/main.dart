@@ -1,9 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'application/themes/theme_cubit.dart';
 import 'extra/config/configuration.dart';
 import 'extra/constants/strings.dart';
+import 'extra/injection/injection.dart';
 import 'extra/routes/router.gr.dart';
 import 'extra/style/style.dart';
 
@@ -28,13 +31,24 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
-      title: Strings.appName,
-      theme: Themes.lightTheme(context),
-      darkTheme: Themes.darkTheme(context),
-      themeMode: ThemeMode.dark,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<ThemeCubit>()..initializeTheme(),
+        ),
+      ],
+      child: BlocBuilder<ThemeCubit, bool>(
+        builder: (context, state) {
+          return MaterialApp.router(
+            routerDelegate: _appRouter.delegate(),
+            routeInformationParser: _appRouter.defaultRouteParser(),
+            title: Strings.appName,
+            theme: Themes.lightTheme(context),
+            darkTheme: Themes.darkTheme(context),
+            themeMode: state ? ThemeMode.dark : ThemeMode.light,
+          );
+        },
+      ),
     );
   }
 }
