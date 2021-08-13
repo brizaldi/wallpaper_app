@@ -33,9 +33,9 @@ dependencies:
   flutter_vector_icons: ^1.0.0
 
   #* Network
-  connectivity: ^3.0.6
   dio: ^4.0.0
   pretty_dio_logger: ^1.2.0-beta-1
+  connectivity_plus: ^1.0.6
 
   #* Dart data class
   freezed_annotation: ^0.14.2
@@ -78,7 +78,7 @@ dev_dependencies:
 
   #* Testing
   bloc_test: ^8.1.0
-  mockito: ^5.0.10
+  mockito: ^5.0.14
 
 flutter:
 

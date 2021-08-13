@@ -12,6 +12,7 @@ analyzer:
     - lib/**/*.config.dart
     - lib/**/*.g.dart
     - lib/**/*.freezed.dart
+    - test/**/*.mocks.dart
 
   errors:
     # Otherwise we cause the import of all_lint_rules to warn, because of some rules conflicts.

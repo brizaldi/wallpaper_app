@@ -15,7 +15,7 @@ class PhotoRepository implements IPhotoRepository {
     this._remoteDataSource,
   );
 
-  final NetworkInfo _networkInfo;
+  final INetworkInfo _networkInfo;
   final IPhotoRemoteDataSource _remoteDataSource;
 
   @override

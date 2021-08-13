@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart';
@@ -39,5 +40,10 @@ abstract class RegisterModule {
     }
 
     return dio;
+  }
+
+  @lazySingleton
+  Connectivity get connectionChecker {
+    return Connectivity();
   }
 }

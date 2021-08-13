@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/layouts/view_cubit.dart';
+import '../../application/layouts/layout_cubit.dart';
 import '../../application/photos/photos_watcher/photos_watcher_bloc.dart';
 import '../../extra/injection/injection.dart';
 import 'widgets/home_scaffold.dart';

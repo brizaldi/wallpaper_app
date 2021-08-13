@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 
-import '../../../application/layouts/view_cubit.dart';
+import '../../../application/layouts/layout_cubit.dart';
 import '../../../application/photos/photos_watcher/photos_watcher_bloc.dart';
 import '../../../application/themes/theme_cubit.dart';
 import '../../../domain/layouts/layout_type.dart';
